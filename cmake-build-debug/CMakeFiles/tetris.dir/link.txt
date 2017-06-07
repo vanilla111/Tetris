@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++   -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/tetris.dir/src/cubePoint.cpp.o CMakeFiles/tetris.dir/src/cur.cpp.o CMakeFiles/tetris.dir/src/game.cpp.o CMakeFiles/tetris.dir/src/graph.cpp.o CMakeFiles/tetris.dir/src/rand.cpp.o CMakeFiles/tetris.dir/src/score.cpp.o  -o tetris 
