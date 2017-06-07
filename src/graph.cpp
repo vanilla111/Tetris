@@ -22,8 +22,7 @@ int Gbase::move(int dir)
 		case DOWN:x++;break;
 		case LEFT:y--;break;
 		case RIGHT:y++;break;
-		default:
-				break;
+		default:break;
 	}
     return 0;
 }

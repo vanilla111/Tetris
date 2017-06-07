@@ -14,19 +14,19 @@ protected:
 	int y;	//a[0][0]的位置
 	int a[3][3];
 public:
-	Gbase(){
-		x = 0;
-		y = 0;
+    Gbase(){
+        x = 0;
+        y = 0;
 
-		for(int j = 0; j < 3; j++)
+        for(int j = 0; j < 3; j++)
 			for(int i = 0; i < 3; i++)
 				a[i][j] = 0;
 	}
-	int move(int dir);
+    int move(int dir);
     //改变图形的状态
-	virtual int roll();
-	virtual void draw(){}
-	void setLocate(int a,int b){x = a;y = b;}
+    virtual int roll();
+    virtual void draw(){}
+    void setLocate(int a,int b){x = a;y = b;}
     void getLocate(int* a,int* b){*a = x;*b = y;}
     void printG(int color);
     //获取数组首地址
@@ -107,15 +107,13 @@ public:
 class Context
 {
 private:
-	Gbase* gbase;
-	color clr;
+    Gbase* gbase;
+    color clr;
 
 public:
-    ~Context()
-    {
-        delete gbase;
-    }
-	Context(char cType)
+    ~Context() { delete gbase; }
+
+    Context(char cType)
 	{
 		switch(cType)
 		{
@@ -139,17 +137,17 @@ public:
 				break;
 		}
 	}
-	int move(int dir){
+    int move(int dir){
         return gbase->move(dir);
     }
-	int roll(){
+    int roll(){
         return gbase->roll();
     }
-	void draw(){
+    void draw(){
         gbase->draw();
     }
 
-	void setLocate(int a,int b){
+    void setLocate(int a,int b){
         gbase->setLocate(a,b);
     }
     void getLocate(int *a,int* b){
@@ -165,17 +163,17 @@ public:
             gbase->printG(CLEAR);
         else
             gbase->printG(clr);
-	}
+    }
 
-void setColor(color clr)
-{
-	this->clr = clr;
-}
+    void setColor(color clr)
+    {
+        this->clr = clr;
+    }
 
-color getColor()
-{
-	return clr;
-}
+    color getColor()
+    {
+        return clr;
+    }
 
 };
 

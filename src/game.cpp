@@ -16,7 +16,6 @@ int num = 0;
 
 static int stop_flag;
 static int SPEED = 500000;
-//为了只调用srand函数一次，这样时间相近产生的随机数就不会重复
 static Rand r;
 
 void Game::printNextCube(Context* graph)
@@ -49,30 +48,30 @@ void Game::printNextCube(Context* graph)
 
 void Game::printHelp()
 {
-   	Cur c;
-	c.saveCur();
-   	c.moveCur(10,19);
-   	cout<<"a: go to left" << endl;
+    Cur c;
+    c.saveCur();
+    c.moveCur(10,19);
+    cout<<"a: go to left" << endl;
     c.resumeCur();
 
     c.saveCur();
-   	c.moveCur(11,19);
-   	cout<<"d: go to right" << endl;
+    c.moveCur(11,19);
+    cout<<"d: go to right" << endl;
     c.resumeCur();
 
     c.saveCur();
-   	c.moveCur(12,19);
-   	cout<<"w: roll cube" << endl;
+    c.moveCur(12,19);
+    cout<<"w: roll cube" << endl;
     c.resumeCur();
 
     c.saveCur();
-   	c.moveCur(13,19);
-   	cout<<"s: go to down" << endl;
+    c.moveCur(13,19);
+    cout<<"s: go to down" << endl;
     c.resumeCur();
 
     c.saveCur();
-   	c.moveCur(14,19);
-   	cout<<"p: run or pause" << endl;
+    c.moveCur(14,19);
+    cout<<"p: run or pause" << endl;
     c.resumeCur();
 }
 
@@ -122,7 +121,7 @@ Game::Game()
     int i;
     s.printMessage();
 
-	mark = GAME_RUN;
+    mark = GAME_RUN;
 
     memset((void*)m_penal,0,PENAL_SIZE); 
 	memset((void*)m_color,0,PENAL_SIZE);
@@ -260,16 +259,14 @@ void Game::createCube()
 
 void Game::move(int dir)
 {
-
-	if(GAME_RUN != mark)
+    if(GAME_RUN != mark)
 		return;
     erasePenal();
     pthread_mutex_lock(&mutex_lock);
     switch(dir)
     {
         case DOWN:
-            if(false == isAttachBottom())
-            {
+            if(false == isAttachBottom()) {
                 m_graph->move(DOWN);
                 setPenal();
                 m_graph->printG(YELLOW);
@@ -281,8 +278,7 @@ void Game::move(int dir)
             }
             break;
         case LEFT:
-            if(false == isAttachLeft())
-            {
+            if(false == isAttachLeft()) {
                 m_graph->move(LEFT);
                 setPenal();
                 m_graph->printG(YELLOW);
@@ -293,8 +289,7 @@ void Game::move(int dir)
  
             break;
         case RIGHT:
-            if(false == isAttachRight())
-            {
+            if(false == isAttachRight()) {
                 m_graph->move(RIGHT);
                 setPenal();
                 m_graph->printG(YELLOW);
@@ -347,6 +342,7 @@ void Game::roll()
     setPenal();
     m_graph->printG(YELLOW);
 }
+
 void Game::stop()
 {
     delete m_graph;
@@ -380,6 +376,7 @@ bool Game::isAttachBottom()
     }
     return flag;
 }
+
 bool Game::isAttachLeft()
 {
     int i,j;
@@ -406,6 +403,7 @@ bool Game::isAttachLeft()
     return flag;
 
 }
+
 bool Game::isAttachRight()
 {
     int i,j;
@@ -431,6 +429,7 @@ bool Game::isAttachRight()
     }
     return flag;
 }
+
 void Game::erase()
 {
    int i,j;
@@ -459,6 +458,7 @@ void Game::erase()
         flag = 0;
    }
 }
+
 void Game::down(int level)
 {
     int i,j;
@@ -489,6 +489,7 @@ void Game::down(int level)
             }
         }
 }
+
 void* listenKey(void *ptr)
 {
     Game* ptrg = (Game*)ptr;
@@ -530,14 +531,15 @@ void* listenKey(void *ptr)
         }
     }
 }
+
 int main()
 {
     pthread_t t1;
     pthread_mutex_init(&mutex_lock, NULL);
-	system("clear");
+    system("clear");
     Game g;
     //g.createCube();
-	g.gameInit();
+    g.gameInit();
     pthread_create(&t1,NULL,listenKey,(void*)(&g));
 
     while(1)
@@ -546,5 +548,6 @@ int main()
         usleep(SPEED);
         g.move(DOWN);
     }
-	return 0;
+
+    return 0;
 }

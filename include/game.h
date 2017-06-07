@@ -13,11 +13,10 @@ class Game
 {
 private:
     int m_penal[24][17];
-	color m_color[24][17];
+    color m_color[24][17];
     Context* m_graph;
-
-	Context* nextGraph;
-	MARK mark;
+    Context* nextGraph;
+    MARK mark;
 public:
     int x;
     int y;//当前方块的位置，方块移动或者旋转成功后才可以设置这个值
@@ -41,8 +40,7 @@ private:
     bool erasePenal();
 public:
     Game();
-
-	~Game();
+    ~Game();
 
     //随机创建方块的方法
     void createCube();
@@ -57,8 +55,8 @@ public:
     //擦除完上面的图形整块坠落
     void down(int level);
 
-	void printNextCube(Context* m_graph);
-	void gameInit();
+    void printNextCube(Context* m_graph);
+    void gameInit();
 
     MARK getMark();
     void setMark( MARK );
